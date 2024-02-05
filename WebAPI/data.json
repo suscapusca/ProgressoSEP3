@@ -1,0 +1,53 @@
+{
+  "Users": [
+    {
+      "Id": 1,
+      "UserName": "vatsal",
+      "Password": null,
+      "ProjectsList": null,
+      "TasksCollection": null
+    }
+  ],
+  "Tasks": [
+    {
+      "id": 1,
+      "BelongsToProjects": {
+        "id": 1,
+        "ProjectName": "project1",
+        "Owner": {
+          "Id": 1,
+          "UserName": "vatsal",
+          "Password": null,
+          "ProjectsList": null,
+          "TasksCollection": null
+        },
+        "isCompleted": false,
+        "TasksList": null
+      },
+      "Title": "taks123",
+      "isCompleted": false,
+      "Owner": {
+        "Id": 1,
+        "UserName": "vatsal",
+        "Password": null,
+        "ProjectsList": null,
+        "TasksCollection": null
+      }
+    }
+  ],
+  "ProjectsCollection": [
+    {
+      "id": 1,
+      "ProjectName": "project1",
+      "Owner": {
+        "Id": 1,
+        "UserName": "vatsal",
+        "Password": null,
+        "ProjectsList": null,
+        "TasksCollection": null
+      },
+      "isCompleted": false,
+      "TasksList": null
+    }
+  ]
+}
