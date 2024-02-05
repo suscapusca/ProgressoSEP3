@@ -1,0 +1,202 @@
+﻿@page "/board/project"
+@using System.Security.Claims
+@inject ICreateProjectService ProjectService
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@using BlazorApp.Services.ClientInterface
+@using global::Shared.DTO
+<div class="board-page d-flex flex-column flex-md-row">
+    <div class="sidebar border border border-dark-subtle">
+        <NavMenu />
+    </div>
+    <div class="board-page__container container">
+        <div class="row">
+            <h3>Create Tasks</h3>
+            <div class="input-group mb-3">
+              <label for="idInput">ID:</label>
+              <input type="text" class="form-control mb-3" placeholder="ID" id="idInput" aria-label="Id" aria-describedby="basic-addon1" @bind="Id" @bind:event="oninput">
+            
+              <label for="titleInput">Name Task:</label>
+              <input type="text" class="form-control mb-3" placeholder="Name Task" id="titleInput" aria-label="Project" aria-describedby="basic-addon1" @bind="Title" @bind:event="oninput">
+            
+              <button class="btn btn-primary w-100" type="button" @onclick="Create">Submit Task</button>
+            </div>
+
+            <h1>Board</h1>
+            <div class="row">
+                <div class="col">
+                    <h4 class="">Progress</h4>
+                    <div>
+                        <div class="card mb-1" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Go Edit</button>
+                            </div>
+                        </div>
+                        <div class="card mb-1" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Go Edit</button>
+                            </div>
+                        </div>
+                        <div class="card mb-1" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Go Edit</button>
+                            </div>
+                        </div>
+                        <div class="card mb-1" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Go Edit</button>
+                            </div>
+                        </div>
+                        <div class="card mb-1" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Go Edit</button>
+                            </div>
+                        </div>
+                        <div class="card mb-1" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Go Edit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <h4 class="">Done</h4>
+                    <div>
+                        <div class="card mb-1" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Go Edit</button>
+                            </div>
+                        </div>
+                        <div class="card mb-1" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Go Edit</button>
+                            </div>
+                        </div>
+                        <div class="card mb-1" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Go Edit</button>
+                            </div>
+                        </div>
+                        <div class="card mb-1" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Go Edit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Task Name</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Title:</label>
+                        <input type="text" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Description:</label>
+                        <textarea class="form-control" id="message-text"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="col-form-label">Select:</label>
+                        <select class="form-select" aria-label="Default select example">
+                            @*<option selected>Open this select menu</option>*@
+                            <option value="1">Progress</option>
+                            <option value="2">Done</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthState { get; set; } = null!;
+    private string Id;
+    private string Title = "";
+    private string msg = "";
+    private IEnumerable<Claim> claims = Enumerable.Empty<Claim>();
+    
+
+    private async Task Create()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity is not null && user.Identity.IsAuthenticated)
+        {
+            claims = user.Claims;
+            Id = user.FindFirst(c => c.Type == ClaimTypes.Sid)?.Value;
+        }
+        else
+        {
+            msg = "The user is NOT authenticated.";
+        }
+
+        try
+        {
+            if (string.IsNullOrEmpty(Id))
+            {
+    // Handle the case when Id is null or empty
+                msg = "The user ID is missing.";
+            }
+            else if (int.TryParse(Id, out int projectId))
+            {
+                await ProjectService.CreateUserStory(new TaskDTO
+                {
+                    ProjectId = projectId,
+                    Title = Title
+                });
+            }
+            else
+            {
+    // Handle the case when Id is not a valid integer
+                msg = "The user ID is not a valid integer.";
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            msg = e.Message;
+        }
+    }
+
+}

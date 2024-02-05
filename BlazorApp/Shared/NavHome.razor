@@ -1,0 +1,34 @@
+﻿<header class="navbar bg-body-tertiary nav-home justify-content-center">
+    <nav class="container">
+        <div class="row w-100">
+            <div class="col-6 col-md-6">
+                <div class="d-inline-block">
+                    <NavLink class="navbar-brand d-flex col nav-home__logo-wrap" href="">
+                        <img src="Images/logo.svg" alt="Logo" width="40" height="50" class="d-inline-block align-text-top">
+                        <h3>Progresso</h3>
+                    </NavLink>
+                </div>
+            </div>
+            <div class="col-6 col-md-6 d-flex justify-content-end nav-home__right-wrap">
+                <div class="d-flex pe-md-2 pe-lg-4">
+                    <NavLink class="nav-link d-flex d-none d-sm-flex" href="https://github.com/vatsal8784/SEP_new" target="_blank"><img src="Images/icon_github.svg" class="nav-home__right-wrap__icon"></NavLink>
+                    @*<NavLink class="nav-link d-flex" href=""><img src="Images/icon_linkedin.svg" class="nav-home__right-wrap__icon"></NavLink>*@
+                </div>
+                <div class="d-flex">
+                    <NavLink class="nav-link d-flex align-self-center" href="login">
+                        <button type="button" class="btn btn-outline-dark nav-home__right-wrap__login-button"><h4>Log In</h4></button>
+                    </NavLink>
+                    <NavLink class="nav-link d-flex align-self-center" href="register">
+                        <button type="button" class="btn btn-primary nav-home__right-wrap__get-button">
+                            <h4>Sign Up</h4>
+                        </button>
+                    </NavLink>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+@code {
+
+}

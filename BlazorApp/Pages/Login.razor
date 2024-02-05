@@ -1,0 +1,52 @@
+﻿@page "/login"
+@using BlazorApp.Services.ClientInterface
+@inject IAuthService AuthService
+@inject NavigationManager NavManager
+
+<div class="container login-page">
+    <div class="row align-items-center flex-column">
+        <NavLink class="navbar-brand d-flex h-100 col-auto" href="">
+            <img src="Images/logo.svg" alt="Logo" width="60" height="70" class="d-inline-block align-text-top">
+            <h3 class="d-flex align-self-center">Progresso</h3>
+        </NavLink>
+        <div class="card text-bg-dark mt-5 flex-column d-flex border border-dark-subtle login-page__card" style="max-width: 25rem;">
+            <div class="card-body">
+                <div class="input-group mb-3 mt-3">
+                    <input type="text" class="form-control" placeholder="UserName" aria-label="UserName" aria-describedby="basic-addon2" @bind="_userName" @bind:event="oninput">
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon2" @bind="_password" @bind:event="oninput">
+                </div>
+                
+                <div class="d-grid gap-2 mb-3">
+                    <button class="btn btn-primary w-100" type="button" value="login"  @onclick="LoginAsync">Log In</button>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <NavLink href="reset-password" class="link-underline-dark"><h6>Forgotten password?</h6></NavLink>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private string _userName = "";
+    private string _password = "";
+    private string _errorLabel = "";
+
+    private async Task LoginAsync()
+    {
+        _errorLabel = "";
+        try
+        {
+            await AuthService.LoginAsync(_userName, _password);
+            NavManager.NavigateTo($"/Project");
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            _errorLabel = e.Message;
+        }
+    }
+}

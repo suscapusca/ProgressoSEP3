@@ -1,0 +1,164 @@
+﻿@page "/projects"
+@using System.Security.Claims
+@inject ICreateProjectService ProjectService
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@using BlazorApp.Services.ClientInterface
+@using global::Shared.DTO
+
+<div class="board-page d-flex flex-column flex-md-row">
+    <div class="sidebar border border border-dark-subtle">
+        <NavMenu />
+    </div>
+    <div class="board-page__container container">
+        <div class="row">
+                        <h3>Owner</h3>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control mb-3" placeholder="Owner" aria-label="Owner" aria-describedby="basic-addon1" @bind="name">
+                        </div>
+            <h3>Create Project</h3>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control mb-3" placeholder="Name Project" aria-label="Project" aria-describedby="basic-addon1" @bind="Title">
+                <button class="btn btn-primary w-100" type="button" @onclick="Create">Submit Project</button>
+            </div>
+            <h1>Projects</h1>
+
+            <div class="d-flex flex-wrap align-items-baseline">
+                <div class="card m-1" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        @*<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>*@
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Go Edit</button>
+                    </div>
+                </div>
+                <div class="card m-1" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        @*<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>*@
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Go Edit</button>
+                    </div>
+                </div>
+                <div class="card m-1" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        @*<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>*@
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Go Edit</button>
+                    </div>
+                </div>
+                <div class="card m-1" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        @*<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>*@
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Go Edit</button>
+                    </div>
+                </div>
+                <div class="card m-1" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        @*<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>*@
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Go Edit</button>
+                    </div>
+                </div>
+                <div class="card m-1" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        @*<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>*@
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Go Edit</button>
+                    </div>
+                </div>
+                <div class="card m-1" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        @*<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>*@
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Go Edit</button>
+                    </div>
+                </div>
+                <div class="card m-1" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        @*<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>*@
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Go Edit</button>
+                    </div>
+                </div>
+                <div class="card m-1" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        @*<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>*@
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Go Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Project Name</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Title:</label>
+                        <input type="text" class="form-control" id="recipient-name">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+  
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthState { get; set; } = null!;
+    private string name;
+    private string Title = "";
+    private string msg;
+    
+    private IEnumerable<Claim> claims = Enumerable.Empty<Claim>();
+    
+
+    private async Task Create()
+    { var authState = await AuthenticationStateProvider
+        .GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity is not null && user.Identity.IsAuthenticated)
+        {
+            claims = user.Claims;
+            name = user.FindFirst(c => c.Type == ClaimTypes.Sid)?.Value;
+
+        }
+        else
+        {
+            msg = "The user is NOT authenticated.";
+        }
+        
+       
+
+        try
+        {
+            await ProjectService.Create(new CreateProjectDTO
+            {
+                ProjectName = Title,
+                owner = name
+            });
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            msg = e.Message;
+        }
+    }
+}

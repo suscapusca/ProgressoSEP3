@@ -1,0 +1,21 @@
+﻿.main-layout a {
+    display: inline-block
+}
+
+.sidebar {
+    box-shadow: 0px 22px 64px rgba(0, 0, 0, 0.22);
+}
+
+@media (min-width: 768px) {
+    .sidebar {
+        width: 250px;
+        height: 100vh;
+        position: sticky;
+        top: 0;
+    }
+}
+
+.board-page__container {
+    height: 100vh;
+    padding-top: 20px
+}

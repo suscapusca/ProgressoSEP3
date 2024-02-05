@@ -1,0 +1,84 @@
+﻿<div class="top-row navbar">
+    <div class="w-100 py-2 d-flex">
+        @*<a class="navbar-brand" href="">Progresso</a>*@
+        <NavLink class="navbar-brand d-flex justify-content-center col navbar__logo-wrap" href="">
+            <img src="Images/logo.svg" alt="Logo" width="40" height="50" class="d-inline-block align-text-top">
+            <h3>Progresso</h3>
+        </NavLink>
+        <button title="Navigation menu" class="navbar-toggler col-2" @onclick="ToggleNavMenu">
+            @*<span class="navbar-toggler-icon"></span>*@
+            <img src="Images/icon_menu_scale.svg" alt="icon_menu_scale" />
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-account-logout" aria-hidden="true"></span><h5 class="text-truncate text-capitalize">Logout</h5>
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <p class="m-0 text-truncate text-capitalize">user:</p>
+            <h5 class="text-truncate text-capitalize">dragos cotaga</h5>
+        </div>
+        <div class="nav-item px-3">
+            <p class="m-0 text-truncate text-capitalize">current project:</p>
+            <h5 class="text-truncate text-capitalize">demo</h5>
+        </div>
+        <div class="nav-item px-3 nav-scrollable__menu">
+            <p class="m-0 text-truncat text-capitalize">menu:</p>
+            <NavLink class="nav-link " href="project/dashboard" Match="NavLinkMatch.All">
+                <span class="oi oi-dashboard" aria-hidden="true"></span><h5 class="text-truncate text-capitalize">dashboard</h5>
+            </NavLink>
+            <NavLink class="nav-link" href="board/project" Match="NavLinkMatch.All">
+                <span class="oi oi-clipboard" aria-hidden="true"></span><h5 class="text-truncate text-capitalize">board</h5>
+            </NavLink>
+            <NavLink class="nav-link" href="projects" Match="NavLinkMatch.All">
+                <span class="oi oi-project" aria-hidden="true"></span><h5 class="text-truncate text-capitalize">Projects</h5>
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <p class="m-0 text-truncat text-capitalize">projects:</p>
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <h5 class="text-truncate text-capitalize">project 1</h5>
+            </NavLink>
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <h5 class="text-truncate text-capitalize">project 2</h5>
+            </NavLink>
+        </div>
+@*        <div class="nav-item px-3"> 
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="counter">
+                <span class="oi oi-plus" aria-hidden="true"></span> Counter
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="fetchdata">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="login">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Login
+            </NavLink>
+        </div>*@
+    </nav>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+}

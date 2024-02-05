@@ -1,0 +1,117 @@
+syntax = "proto3";
+
+option java_package = "com.protobuf";
+option csharp_namespace = "DataAccessClient";
+
+service UserAccess {
+  rpc CreateUser (UserCreationDto) returns (Response);
+  rpc UsersByRole (Role) returns (FilteredUsersResponse);
+  rpc UserByUsername (Username) returns (UserCreationDto);
+  rpc UpdateUser (UserCreationDto) returns (UpdatedUserResponse);
+  rpc DeleteUser (Username) returns (Response);
+  rpc GetPassword (Username) returns (Password);
+  rpc LookForUsers(Username) returns (FilteredUsersResponse);
+}
+
+
+service ProjectAccess {
+  rpc CreateProject (ProjectCreationDto) returns (ResponseWithID);
+
+  rpc GetAllCollaborators(Id) returns (FilteredUsersResponse);
+  rpc AddCollaborator (AddToProjectDto) returns (Response);
+  rpc RemoveCollaborator(AddToProjectDto) returns (ResponseWithID);
+
+  rpc AddUserStory (UserStoryMessage) returns (ResponseWithID);
+  rpc GetAllProjects (Username) returns (ProjectsResponse);
+  rpc GetProductBacklog (Id) returns (ProductBacklogResponse);
+  rpc UpdateUserStoryStatus(StatusUpdate) returns (Response);
+  rpc DeleteUserStory (Id) returns (Response);
+  
+}
+
+
+message UserCreationDto {
+  string username = 1;
+  string password = 2;
+}
+message Id {
+  int32 id = 1;
+}
+
+message Response {
+  int32 code = 1;
+}
+
+message ResponseWithID {
+  int32 code = 1;
+  int32 id = 2;
+}
+message Role {
+  string roleName = 1;
+}
+
+message UserSearchDto {
+  string firstName = 1;
+  string lastName = 2;
+  string username = 3;
+  string role = 4;
+}
+
+message FilteredUsersResponse {
+  repeated UserSearchDto users = 1;
+  int32 code = 2;
+}
+
+message UpdatedUserResponse {
+  UserCreationDto user = 1;
+  int32 code = 2;
+}
+
+message Username {
+  string username = 1;
+}
+
+message AddToProjectDto {
+  string username = 1;
+  int32 projectId = 2;
+}
+message CollaboratorsResponse{
+  repeated UserCreationDto collaborators = 1;
+}
+
+//ProjectService
+message ProjectCreationDto {
+  string ownerUsername = 1;
+  string title = 2;
+}
+message Password {
+  string password = 1;
+}
+message UserStoryMessage {
+  string taskBody = 1;
+  string priority = 2;
+  int32 project_id = 3;
+}
+message ProjectMessage {
+  int32 id = 1;
+  string title = 2;
+}
+message ProjectsResponse {
+  repeated ProjectMessage projects = 1;
+  int32 code = 2;
+}
+message UserStory {
+  int32 id = 1;
+  int32 project_id = 2;
+  string userStory = 3;
+  string priority = 4;
+}
+message ProductBacklogResponse {
+  repeated UserStory userStories = 1;
+  int32 code = 2;
+}
+
+message StatusUpdate{
+  int32 id =1 ;
+  bool status=2;
+}

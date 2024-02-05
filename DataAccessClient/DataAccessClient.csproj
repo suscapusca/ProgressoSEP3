@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Google.Protobuf" Version="3.23.1" />
+      <PackageReference Include="Grpc.Net.Client" Version="2.53.0" />
+      <PackageReference Include="Grpc.Tools" Version="2.54.0">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\App\App.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Protos\dataAccess.proto" />
+      <Protobuf Include="Protos\dataAccess.proto" GrpcServices="Client"/>
+    </ItemGroup>
+
+</Project>

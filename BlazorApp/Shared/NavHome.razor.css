@@ -1,0 +1,43 @@
+.nav-home {
+    height: 100px;
+    padding-bottom: initial
+}
+
+@media (min-width: 768px) {
+    .nav-home {
+        height: 80px;
+    }
+}
+    
+.nav-home__logo-wrap h3 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.nav-home__right-wrap button {
+    width: 80px;
+    height: 40px;
+    padding: 5px;
+    border-radius: 20px;
+}
+
+@media (min-width: 768px) {
+    .nav-home__right-wrap button {
+        width: 125px;
+        height: 40px;
+    }
+}
+
+.nav-home__right-wrap__get-button {
+    background-color: var(--primary-color);
+}
+
+.nav-home__right-wrap__login-button {
+    color: var(--secondary);
+    border-color: var(--secondary)
+}
+
+.nav-home__right-wrap__login-button:hover {
+    color: var(--bs-light);
+}
